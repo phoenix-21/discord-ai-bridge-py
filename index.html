@@ -33,6 +33,7 @@ hr {
 }
 
 .btn {
+  position: relative;
   background-color: #1e90ff;
   color: white;
   border: none;
@@ -43,10 +44,40 @@ hr {
   margin: 0.5em;
   width: 200px;
   font-weight: bold;
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.1s ease;
 }
 
-.btn:hover {
-  background-color: #187bcd;
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00f, #0ff, #00f, #0ff);
+  z-index: -1;
+  border-radius: 12px;
+  animation: neon-rotate 4s linear infinite;
+  background-size: 300% 300%;
+  filter: blur(4px);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes neon-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .footer {
